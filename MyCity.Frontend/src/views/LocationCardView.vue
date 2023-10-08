@@ -1,35 +1,22 @@
 <script setup lang="ts">
-import {ref} from "vue";
-import axios from 'axios';
-var data = ref<{
-    description: string,
-    LocationType: number,
-    Point: {
-        x: number,
-        y: number
-    }
-}>({
-    description: "",
-    LocationType: 1,
-    Point: {
-        x: 1,
-        y: 2
-    }
-});
-
-const doSave = () => {
-    axios.put("api/Location/CreateLocation", data.value);
-}
 </script>
 
 <template>
     <div>
-        <v-text-field v-model="data.description"></v-text-field>
-        <v-text-field v-model="data.LocationType"></v-text-field>
-        <v-text-field v-model="data.Point.x"></v-text-field>
-        <v-text-field v-model="data.Point.y"></v-text-field>
-    </div>
-    <div>
-        <v-btn color="green" @click="doSave">Сохранить</v-btn>
+        <v-img cover  height="25rem" width="100%" src="src/assets/imgs/building.png"></v-img>
+        <div>
+            <div class="container mt-3">
+                <v-text-field placeholder="название"></v-text-field>
+                <v-textarea placeholder="описание"></v-textarea>
+                <div class="row">
+                    <v-text-field placeholder="x" class="col"></v-text-field>
+                    <v-text-field placeholder="y" class="col"></v-text-field>
+                </div>
+                <div class="row pr-3">
+                    <v-text-field placeholder="ссылка" class="col-11"></v-text-field>
+                    <v-btn height="55" class="col-1">Перейти</v-btn>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

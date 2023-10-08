@@ -1,72 +1,58 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
-import { reactive, ref } from "vue"
-import dragable from "vuedraggable"
+import { ref } from "vue";
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-var route = useRoute();
-const router = useRouter()
-var dataVal = ref({routePoints:[]})
-const locationList = ref([]);
-const getLocations = () => {
-    axios.post('api/Location/List').then(x => {
-        locationList.value = x.data;
-    })
-}
+import draggable from "vuedraggable"
 const dragging = ref(true);
-getLocations();
-const newPoint = ref({});
-const addPoint = () => {
-    newPoint.value.generatedId = uuidv4();
-    dataVal.value.routePoints.push(newPoint.value);
-    newPoint.value = {};
-}
-
-const createRoutePoints = () => {
-    axios.put("Route/CreateOrUpdateRoute", dataVal.value)
-}
-const getData = () => {
-    axios.get(`RoutePoints/Get?routeId=${route.query.id}`).then(x => {
-        dataVal.value = x.data;
-    })
-}
-getData()
-router.replace({ query: {}})
+const list = ref([
+    { id: 1, name: 1, description: "123" },
+    { id: 1, name: 1, description: "123" },
+])
 </script>
 
 <template>
-    <div>
-        {{ dataVal }}
-        <v-btn color="green" @click="createRoutePoints">Сохранить</v-btn>
-        <v-text-field v-model="dataVal.name" label="Название"></v-text-field>
-        <v-text-field v-model="dataVal.description" label="Описание"></v-text-field>
-        <v-card class="mx-auto" max-width="344" variant="outlined">
-            <v-text-field label="описание" v-model="newPoint.description"></v-text-field>
-            <v-combobox label="Локации" v-model="newPoint.location"
-                :items="locationList" item-title="description"></v-combobox>
-            <v-btn color="red" @click="addPoint">Добавить точку</v-btn>
-        </v-card>
-        <dragable :list="dataVal.routePoints" item-key="name" class="list-group" ghost-class="ghost" @start="dragging = true"
-            @end="dragging = false">
-            <template #item="{ element }">
-                <div>
-                    <v-card class="mx-auto" max-width="344" variant="outlined">
-                        <template v-slot:title>{{ element.description }}</template>
-                        <template v-slot:append>
-                            <div class="justify-self-end">
-                                <v-btn @click="() => list = list.filter(x => x.generatedId != element.generatedId)">Удалить</v-btn>
-                            </div>
-                        </template>
-                    </v-card>
+    <div class="test">
+        <div class="route-points">
+            <div class="container my-5">
+            <v-text-field placeholder="название" bg-color="white"></v-text-field>
+            <v-textarea placeholder="описание" bg-color="white"></v-textarea>
+            <div class="mx-auto new-point-select row">
+                <div class="row">
+                    <v-combobox class="col-10" placeholder="локация" bg-color="white"></v-combobox>
+                    <v-btn height="55" class="col-2">добавить</v-btn>
                 </div>
-            </template>
-        </dragable>
+                <draggable v-model="list" item-key="id" @start="drag = true" @end="drag = false" class="list-group"
+                    ghost-class="ghost">
+                    <template #item="{ element }">
+                        <v-card :title="element.name" class="mt-3" :text="element.description">
+                            <template #actions>
+                                <v-btn variant="tonal">удалить</v-btn>
+                                <v-btn variant="tonal">открыть локацию</v-btn>
+                            </template>
+                        </v-card>
+                    </template>
+                </draggable>
+            </div>
+        </div>
+        </div>
     </div>
 </template>
 
 <style scoped>
-.buttons {
-    margin-top: 35px;
+.test {
+    background: url("../assets/imgs/test.png");
+    height: 100vh;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.route-points{
+    width: 100%;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.new-point-select {
+    width: 40rem;
 }
 
 .ghost {

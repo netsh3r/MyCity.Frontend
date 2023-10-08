@@ -3,5 +3,11 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <RouterView />
+   <router-view />
 </template>
+
+<style>
+html {
+  overflow-y: auto !important;
+}
+</style>
