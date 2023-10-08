@@ -28,10 +28,10 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Generate
-        run: yarn generate
+        run: npm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
