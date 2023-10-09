@@ -1,0 +1,7 @@
+:root{ 
+    --bodybacground: white;
+}
+
+body{
+    background-color: var(--bodybacground) !important;
+}

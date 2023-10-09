@@ -35,14 +35,12 @@ const list = ref([
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .test {
     background: url("../assets/imgs/test.png");
-    height: 100vh;
-    width: 100%;
     overflow-y: hidden;
+    height: calc(100vh - 75px);
 }
-
 .route-points{
     width: 100%;
     overflow-y: auto;
