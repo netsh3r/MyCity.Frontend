@@ -1,6 +1,5 @@
 import RouteViewVue from '@/views/RouteView.vue'
 import RoutePointView from '@/views/RoutePointView.vue'
-import LocationView from '@/views/LocationView.vue'
 import LocationCardView from '@/views/LocationCardView.vue'
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -22,11 +21,6 @@ const router = createRouter({
       path: "/routePoint",
       name: "routePoint",
       component: RoutePointView
-    },
-    {
-      path: '/location',
-      name: 'location',
-      component: LocationView
     },
     {
       path: '/locationCard',
