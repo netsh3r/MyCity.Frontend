@@ -24,8 +24,9 @@ loadData();
 
 <template>
     <div class="d-flex flex-wrap mx-2">
-        <v-card class="m-2" v-for="t in locations" :key="t.id">
-            <v-img cover height="500" width="300" src="src/assets/imgs/building.png"></v-img>
+        <v-card class="m-2" v-for="t in locations" :key="t.id" theme="dark">
+            <div class="location-card-img"></div>
+            <!-- <v-img cover height="500" width="300" src="src/assets/imgs/building.png"></v-img> -->
             <v-card-item>
                 <v-card-title>Cafe Badilico</v-card-title>
                 <v-card-subtitle>
@@ -40,4 +41,12 @@ loadData();
     </div>
 </template>
 
-<style></style>
+<style>
+.location-card-img {
+    width: 300px;
+    height: 500px;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../../assets/imgs/test.png") !important;
+}
+</style>

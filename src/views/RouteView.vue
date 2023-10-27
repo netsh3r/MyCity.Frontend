@@ -1,9 +1,8 @@
 <template>
     <div style="height: 100vh; height: 100%; overflow-y: hidden;">
         <div class="container">
-            {{ toggle }}
             <div class="d-flex align-left flex-column m-3 mb-4 mt-5">
-                <v-btn-toggle v-model="toggle" divided variant="outlined">
+                <v-btn-toggle v-model="toggle" divided variant="outlined" theme="dark">
                     <v-btn value="1">Маршруты</v-btn>
                     <v-btn value="2">Локации</v-btn>
                 </v-btn-toggle>

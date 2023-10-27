@@ -149,7 +149,7 @@ loadData();
 
 <style scoped lang="scss">
 .test {
-    //background: url("../assets/imgs/test.png");
+    background: url("../assets/imgs/test.png");
     overflow-y: hidden;
     height: calc(100vh - 75px);
 }

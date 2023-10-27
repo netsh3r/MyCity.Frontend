@@ -47,7 +47,7 @@ loadData();
 
 <template>
     <div>
-        <v-img cover  height="25rem" width="100%" src="src/assets/imgs/building.png"></v-img>
+        <!-- <v-img cover height="25rem" width="100%" style="background-color: black;"></v-img> -->
         <div>
             <div class="container mt-3">
                 <v-text-field placeholder="название" v-model="model.name" />

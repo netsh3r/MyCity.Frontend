@@ -4,8 +4,8 @@ import HeaderMain from './components/Header/HeaderMain.vue';
 </script>
 
 <template>
-  <HeaderMain/>
-   <RouterView />
+  <HeaderMain v-if="$route.name != ''"/>
+  <RouterView />
 </template>
 
 <style>
