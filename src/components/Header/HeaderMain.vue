@@ -39,6 +39,8 @@
   background-color: rgba(120,120,120, 0.4);
   position: absolute;
   backdrop-filter: blur(3px);
+  z-index: 99;
+}
 
 .header-width {
   height: 100%;
