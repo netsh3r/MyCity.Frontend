@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { ref, computed } from "vue";
 import axios from "axios";
 import draggable from "vuedraggable"
@@ -34,7 +35,7 @@ const selectLocation = ref<{
 const locations = ref([])
 
 const route = computed(() => {
-    return `https://yandex.ru/maps/?rtext=${list.value.map(i => `${i.location.point.x},${i.location.point.y}`).join('~')}`;
+    return `https://yandex.ru/map-widget/v1/?rtext=${list.value.map(i => `${i.location.point.x}%2C${i.location.point.y}`).join('~')}`;
 })
 
 const loadData = async () => {
@@ -44,7 +45,6 @@ const loadData = async () => {
         list.value = routeData.routePointDto;
     }
 
-    router.replace({ query: {} })
     locations.value = (await axios.post('api/Location/List')).data
 }
 
@@ -102,9 +102,11 @@ loadData();
 </script>
 
 <template>
-    <div class="test">
+    <div class="route-block">
         <div class="route-points">
             <div class="container my-5">
+                <iframe :src="route" width="100%" height="300px" frameborder="1" allowfullscreen="true"
+                    style="position: relative"></iframe>
                 <v-text-field placeholder="название" bg-color="white" variant="solo" v-model="model.name"></v-text-field>
                 <v-textarea placeholder="описание" bg-color="white" variant="solo" v-model="model.description"></v-textarea>
                 <div class="mx-auto new-point-select row">
@@ -148,10 +150,14 @@ loadData();
 </template>
 
 <style scoped lang="scss">
-.test {
-    background: url("../assets/imgs/test.png");
+.route-block {
+    background:
+        radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+        url("@/assets/imgs/test.png") !important;
     overflow-y: hidden;
-    height: calc(100vh - 75px);
+    height: 100vh;
+    padding-top: 3em;
+    z-index: 9;
 }
 
 .route-points {
