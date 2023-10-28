@@ -33,23 +33,21 @@
                 <div>
                     <router-link class="btn active btn-xlg btn-dark rounded-pill" to="/route">Посмотреть локации и
                         маршруты</router-link>
-                    <!-- <v-btn theme="dark" rounded="xl" class="w-auto px-4">Посмотреть локации и маршруты</v-btn> -->
                 </div>
                 <div>
                     <router-link class="btn active btn-dark rounded-pill" to="/locationCard">Создать локацию</router-link>
-                    <!-- <v-btn theme="dark" rounded="xl" class="w-auto px-4">Создать локацию</v-btn> -->
                 </div>
                 <div>
                     <router-link class="btn active btn-dark rounded-pill" to="/routePoint">Создать маршрут</router-link>
-                    <!-- <v-btn theme="dark" rounded="xl" class="w-auto px-4">Создать маршрут</v-btn> -->
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row d-inline-flex line-animation">
-            <div class="build1 mr-2"></div>
-            <div class="build2 mr-2"></div>
-            <div class="build3 mr-2"></div>
-        </div>
+        <div class="build line-animation build-line"><img src="@/assets/imgs/Build1.png" /></div>
+        <div class="build line-animation build-line" style="animation-delay: 1s;"><img src="@/assets/imgs/build2.png" /></div>
+        <div class="build line-animation build-line" style="animation-delay: 2s;"><img src="@/assets/imgs/build3.png" /></div>
+        <div class="build line-animation build-line" style="animation-delay: 3s;"><img src="@/assets/imgs/build4.png" /></div>
+        <div class="build line-animation build-line" style="animation-delay: 4s;"><img src="@/assets/imgs/build5.png" /></div>
+        <div class="build line-animation build-line" style="animation-delay: 5s;"><img src="@/assets/imgs/build6.png" /></div>
     </div>
 </template>
 
@@ -80,13 +78,9 @@
 
 .line-animation {
     animation-name: slide;
-    animation-duration: 5s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
     animation-timing-function: linear;
-    bottom: 0;
-    right: 0;
-    position: absolute;
 }
 
 .home-text {
@@ -95,35 +89,32 @@
     font-weight: 600;
 }
 
-.build1 {
-    background: url("../assets/imgs/Build1.png") no-repeat;
-    background-size: contain;
+.build {
     width: 200px;
     height: 200px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
-.build2 {
-    background: url("../assets/imgs/build2.png") no-repeat;
-    background-size: contain;
-    width: 200px;
-    height: 200px;
+.build img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
-.build3 {
-    background: url("../assets/imgs/build3.png") no-repeat;
-    background-size: contain;
-    width: 200px;
-    height: 200px;
+.build-line {
+    bottom: 0;
+    right: 0;
+    position: absolute;
 }
-
 
 @keyframes slide {
     from {
-        transform: translateX(0);
+        transform: translateX(20em);
     }
 
     to {
-        transform: translateX(-100%);
+        transform: translate(-100vw);
     }
 }
 </style>
