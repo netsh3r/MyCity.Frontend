@@ -1,10 +1,8 @@
 <template>
   <div class="header-block">
     <header class="d-flex flex-wrap justify-content-center py-3 header-width">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
+      <a href="/" class="d-flex align-items-center mb-5 ml-5 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        v-if="!props.isFromHome">
         <div class="fs-4 text-light">
           <div class="pl-2">
             Моя
@@ -14,6 +12,17 @@
           </div>
         </div>
       </a>
+      <div class="d-flex align-items-center mb-5 ml-5 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" v-else
+        @click="() => emit('showHome')" style="cursor: pointer;">
+        <div class="fs-4 text-light">
+          <div class="pl-2">
+            Моя
+          </div>
+          <div style="margin-top: -24px;">
+            Россия
+          </div>
+        </div>
+      </div>
 
       <ul class="nav nav-pills">
         <li class="nav-item"><router-link class="link-body-emphasis text-decoration-none fs-4 mr-5"
@@ -31,15 +40,28 @@
   </div>
 </template>
 
-<style lang="scss">
+<script setup lang="ts">
+import { defineProps, defineEmits } from "vue"
+
+const props = withDefaults(defineProps<{
+  isFromHome: boolean
+}>(),
+  {
+    isFromHome: false
+  })
+
+const emit = defineEmits(["showHome"])
+</script>
+
+<style lang="scss" scoped>
 .header-block {
   width: 100%;
   height: 70px;
   background-color: rgba(256, 256, 256, 0.3);
-  background-color: rgba(120,120,120, 0.4);
+  background-color: rgba(120, 120, 120, 0.4);
   position: absolute;
   backdrop-filter: blur(3px);
-  z-index: 99;
+  z-index: 9999;
 }
 
 .header-width {

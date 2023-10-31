@@ -41,7 +41,7 @@ loadData();
     </div>
 </template>
 
-<style>
+<style scoped>
 .location-card-img {
     width: 300px;
     height: 500px;

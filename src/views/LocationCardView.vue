@@ -71,7 +71,7 @@ loadData()
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .image-block {
     padding-top: 70px;
     width: 100vw;

@@ -28,7 +28,7 @@ loadData();
 
 <template>
     <div class="d-flex flex-wrap mx-2">
-        <v-card :title="t.name" class="m-2 route-card" v-for="t in routes" :key="t.id" width="25em" theme="dark">
+        <v-card :title="t.name" class="m-2 route-card" v-for="t in routes" :key="t.id" width="25em" height="11em" theme="dark">
             <v-card-text class="route-card-text">{{ t.description }}</v-card-text>
             <template #actions>
                 <v-btn variant="tonal" @click="showRoute(t.id)">Отобразить</v-btn>
@@ -38,7 +38,7 @@ loadData();
     </div>
 </template>
 
-<style>
+<style scoepd>
 .route-card {
     background:
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
