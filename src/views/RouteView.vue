@@ -11,24 +11,27 @@
                 <v-btn theme="dark" v-if="isRollUp" @click="() => isRollUp = !isRollUp">развернуть</v-btn>
                 <v-btn theme="dark" v-else @click="() => isRollUp = !isRollUp">свернуть</v-btn>
             </div>
-            <component :is="cmp" @showCard="showCard"/>
+            <component :is="cmp" @showCard="showCard" :isRollUp="isRollUp"/>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, defineProps } from "vue";
+import { ref, computed, watch, defineProps, } from "vue";
+import { useRoute, useRouter } from 'vue-router';
 import LocationCard from "../components/Navigation/LocationCard.vue";
 import RoutePointCard from "../components/Navigation/RoutePointCard.vue";
+const router = useRouter();
 const props = withDefaults(defineProps<{
     hideElements: boolean
 }>(), {
     hideElements: false
 });
+
 const cmp = computed(() => {
     return toggle.value != 2 ? RoutePointCard : LocationCard;
 })
-const isRollUp = ref(true);
+const isRollUp = ref(false);
 const showCard = (val: string) => {
     href.value = val;
 }
@@ -39,6 +42,10 @@ const href = ref("");
 const toggle = ref(0)
 watch(() => toggle.value, (val, prevVal) => {
     href.value = '';
+})
+
+watch(() => props.hideElements, (val, prevVal) => {
+    router.replace({path: !val ? "route" : ""})
 })
 </script>
 
