@@ -81,5 +81,6 @@ watch(() => props.hideElements, (val, prevVal) => {
     backdrop-filter: blur(2px);
     background: radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
     border-radius: 1em 1em 0 0;
+    overflow-y: auto;
 }
 </style>
