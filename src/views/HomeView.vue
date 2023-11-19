@@ -76,6 +76,13 @@
 import HeaderMainVue from '@/components/Header/HeaderMain.vue';
 import RouteView from './RouteView.vue';
 import {ref} from "vue";
+import axios from "axios";
+
+const loadData = async () => {
+    console.log(await axios.get(`/Event`))
+}
+
+loadData();
 const hideElements = ref(true);
 const showRoutesCard = ref(false);
 const showRoutes = () => {
